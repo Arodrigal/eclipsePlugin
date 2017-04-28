@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Configuration>
+	<Module name="REASEGURO">
+		<Type name="BATCH">
+			<Environment name="int">
+				<Property name="M2_PROFILES" value="int, reaseguro-procesosBatch-int, RiesgosStandalone-int"/>
+			</Environment>
+			<Environment name="test">
+				<Property name="M2_PROFILES" value="test,RiesgosStandalone-test, reaseguro-procesosBatch-test"/>
+			</Environment>
+		</Type>
+		<Type name="DEFAULT">
+			<Environment name="int">
+				<Property name="M2_PROFILES" value="local-int-lib, int"/>
+				<PropertyList name="M2_PROPERTIES">
+					 <Property>entorno=int</Property>
+				</PropertyList>
+			</Environment>
+			<Environment name="test">
+				<Property name="M2_PROFILES" value="local-test-lib, test"/>
+				<PropertyList name="M2_PROPERTIES">
+					 <Property>entorno=test</Property>
+				</PropertyList>
+			</Environment>
+		</Type>
+	</Module>
+	<Module name="REASEGURO">
+		<Type name="BATCH">
+			<Environment name="int">
+				<Property name="M2_PROFILES" value="x1"/>
+				<Properties name="M2_PROPERTIES">
+					 <Property name="entorno" value="int"/>
+					 <Property name="entorno2" value="test"/>
+				</Properties>
+			</Environment>
+			<Environment name="test">
+				<Property name="M2_PROFILES" value="x2"/>
+				<PropertyList name="M2_PROPERTIES">
+					 <Property>entorno=test</Property>
+					 <Property>entorno=test</Property>
+				</PropertyList>
+			</Environment>
+		</Type>
+		<Type name="BATCH">
+			<Environment name="int">
+				<Property name="M2_PROFILES" value="x1"/>
+				<Properties name="M2_PROPERTIES">
+					 <Property name="entorno" value="int"/>
+					 <Property name="entorno2" value="test"/>
+				</Properties>
+			</Environment>
+			<Environment name="test">
+				<Property name="M2_PROFILES" value="x2"/>
+				<PropertyList name="M2_PROPERTIES">
+					 <Property>entorno=test</Property>
+					 <Property>entorno=test</Property>
+				</PropertyList>
+			</Environment>
+		</Type>
+	</Module>	
+</Configuration>
