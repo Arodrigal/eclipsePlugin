@@ -1,10 +1,16 @@
-package com.executeMaven.cesce.bean;
+package com.executeMaven.bean;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Parameters to process
+ * 
+ * @author agustin.rodriguez
+ *
+ */
 public class BuildParameters {
 	Map<String, Object> atributes;
 	private List<String> mavenProperties;

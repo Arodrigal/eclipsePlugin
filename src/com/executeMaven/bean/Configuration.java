@@ -1,14 +1,19 @@
-package com.executeMaven.cesce.bean;
+package com.executeMaven.bean;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * Structure of configuration xml
+ * 
+ * @author agustin.rodriguez
+ *
+ */
 @XmlRootElement(name="Configuration")
 public class Configuration {
     
@@ -38,21 +43,36 @@ public class Configuration {
 	public Environment getEnvParameter(String moduleParam, String typeParam, String environmentParam) {
 		Environment found = null;
 		
-		for(Module mod : modules){
-			if(moduleParam.equalsIgnoreCase(mod.name)){
-				for(Type type : mod.getTypes()){
-					if(typeParam.equalsIgnoreCase(type.name)){
+		// API Stream of Java 8 
+		if(modules != null){
+			Optional<Module> moduleRet = modules.stream()
+				.filter(s -> moduleParam.equalsIgnoreCase(s.getName()))
+				.findFirst();
+			
+			if(moduleRet.isPresent()){
+				Optional<Type> typeRet = moduleRet.get().getTypes().stream()
+						.filter(s -> typeParam.equalsIgnoreCase(s.getName()))
+						.findFirst();
+				
+				if(typeRet.isPresent()){
+					Optional<Environment> envRet = typeRet.get().getEnvironments().stream()
+							.filter(s -> environmentParam.equalsIgnoreCase(s.getName()))
+							.findFirst();
+					
+					if(envRet.isPresent()){					
+						found = envRet.get();
 						
-						for(Environment env : type.getEnvironments() ){
-							if(environmentParam.equalsIgnoreCase(env.name)){
-								found = env;
-							}
-						}
+					}else{
+						System.out.println("Environment NOT FOUND");
 					}
+				}else{
+					System.out.println("Type NOT FOUND");
 				}
+			}else{
+				System.out.println("Module NOT FOUND");
 			}
 		}
-		
+
 		return found;
 	}
 
@@ -66,7 +86,11 @@ public class Configuration {
 	    
 		List<Type> types;
 		List<String> listTypes = null;
-		
+				
+		public String getName() {
+			return name;
+		}
+
 		@XmlElement( name = "Type" )
 		public void setTypes( List<Type> types ){
 	        this.types = types;
@@ -98,6 +122,10 @@ public class Configuration {
 	    
 		List<Environment> environments;
 		List<String> listEnv = null;
+
+		public String getName() {
+			return name;
+		}
 		
 		@XmlElement( name = "Environment" )
 		public void setEnvironments( List<Environment> environments ){
@@ -130,6 +158,10 @@ public class Configuration {
 	    
 		List<Properties> properties;
 		List<Property> property;
+
+		public String getName() {
+			return name;
+		}
 		
 		@XmlElement( name = "PropertyList" )
 		public void setProperties( List<Properties> properties ){
@@ -171,12 +203,6 @@ public class Configuration {
 	    }
 	    
 	    public Object getValue(){
-	    	/*Map<String, String> values = new HashMap<String, String>();
-	    	for(Property prop : property){
-	    		values.put(prop.getName(), prop.getValue());
-	    	}
-	    	
-	    	return values;*/
 	    	return property;
 	    }
 	}

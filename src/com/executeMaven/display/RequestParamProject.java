@@ -1,4 +1,4 @@
-package com.executeMaven.cesce.display;
+package com.executeMaven.display;
 
 import java.util.Map;
 
@@ -11,8 +11,14 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.*;
 
-import com.executeMaven.cesce.handlers.ExecutorMain;
+import com.executeMaven.handlers.ExecutorMain;
 
+/**
+ * Window for request the parameters
+ * 
+ * @author agustin.rodriguez
+ *
+ */
 public class RequestParamProject extends Dialog {
 
 	Map<String, String> previousData = null;
@@ -59,7 +65,6 @@ public class RequestParamProject extends Dialog {
         labelMod.setText("Module: ");
         labelMod.setLayoutData(gridData);
         
-        gridData = new GridData();
         textMod = new Text(dlgAreaComposite, SWT.SINGLE | SWT.BORDER);
         if(previousData.get(ExecutorMain.MODULE) != null){
         	textMod.setText(previousData.get(ExecutorMain.MODULE));
@@ -67,12 +72,10 @@ public class RequestParamProject extends Dialog {
         }
         textMod.setLayoutData(gridData);
 
-        gridData = new GridData();
         Label labelType = new Label(dlgAreaComposite, SWT.NULL);
         labelType.setText("Tipo: ");
         labelType.setLayoutData(gridData);
 
-        gridData = new GridData();
         textType = new Text(dlgAreaComposite, SWT.SINGLE | SWT.BORDER);
         if(previousData.get(ExecutorMain.TYPE) != null){
         	textType.setText(previousData.get(ExecutorMain.TYPE));

@@ -1,20 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+	Types: 
+		BATCH
+		ONLINE
+		WS
+		DEFAULT
+-->
 <Configuration>
 	<Module name="REASEGURO">
 		<Type name="BATCH">
 			<Environment name="int">
-				<Property name="M2_PROFILES" value="int, reaseguro-procesosBatch-int, RiesgosStandalone-int"/>
+				<Property name="M2_PROFILES" value="int, reaseguro-procesosBatch-int"/>
 			</Environment>
 			<Environment name="test">
-				<Property name="M2_PROFILES" value="test,RiesgosStandalone-test, reaseguro-procesosBatch-test"/>
+				<Property name="M2_PROFILES" value="test, reaseguro-procesosBatch-test"/>
 			</Environment>
 		</Type>
 		<Type name="DEFAULT">
 			<Environment name="int">
-				<Property name="M2_PROFILES" value="local-int-lib, int"/>
+				<Property name="M2_PROFILES" value="int, local-int-lib"/>
 				<PropertyList name="M2_PROPERTIES">
 					 <Property>entorno=int</Property>
 				</PropertyList>
+			</Environment>
+			<Environment name="test">
+				<Property name="M2_PROFILES" value="test, local-test-lib"/>
+				<PropertyList name="M2_PROPERTIES">
+					 <Property>entorno=test</Property>
+				</PropertyList>
+			</Environment>
+		</Type>
+	</Module>
+	<Module name="CESNET">
+		<Type name="DEFAULT">
+			<Environment name="int">
+				<Property name="M2_PROFILES" value="local-int-indep, cesnetJ2EE-int"/>
+				<Properties name="M2_PROPERTIES">
+					 <Property>entorno=int</Property>
+				</Properties>
+			</Environment>
+			<Environment name="test">
+				<Property name="M2_PROFILES" value="local-test-indep, cesnetJ2EE-test"/>
+				<PropertyList name="M2_PROPERTIES">
+					 <Property>entorno=test</Property>
+				</PropertyList>
+			</Environment>
+		</Type>
+	</Module>
+	<Module name="SERVICIOS">
+		<Type name="DEFAULT">
+			<Environment name="int">
+				<Property name="M2_PROFILES" value="local-int-lib, int"/>
+				<Properties name="M2_PROPERTIES">
+					 <Property>entorno=int</Property>
+				</Properties>
 			</Environment>
 			<Environment name="test">
 				<Property name="M2_PROFILES" value="local-test-lib, test"/>
@@ -24,38 +63,20 @@
 			</Environment>
 		</Type>
 	</Module>
-	<Module name="REASEGURO">
-		<Type name="BATCH">
+	<Module name="CAS">
+		<Type name="DEFAULT">
 			<Environment name="int">
-				<Property name="M2_PROFILES" value="x1"/>
+				<Property name="M2_PROFILES" value="local-int-lib, int"/>
 				<Properties name="M2_PROPERTIES">
-					 <Property name="entorno" value="int"/>
-					 <Property name="entorno2" value="test"/>
+					 <Property>entorno=int</Property>
 				</Properties>
 			</Environment>
 			<Environment name="test">
-				<Property name="M2_PROFILES" value="x2"/>
+				<Property name="M2_PROFILES" value="local-test-lib, test"/>
 				<PropertyList name="M2_PROPERTIES">
-					 <Property>entorno=test</Property>
 					 <Property>entorno=test</Property>
 				</PropertyList>
 			</Environment>
 		</Type>
-		<Type name="BATCH">
-			<Environment name="int">
-				<Property name="M2_PROFILES" value="x1"/>
-				<Properties name="M2_PROPERTIES">
-					 <Property name="entorno" value="int"/>
-					 <Property name="entorno2" value="test"/>
-				</Properties>
-			</Environment>
-			<Environment name="test">
-				<Property name="M2_PROFILES" value="x2"/>
-				<PropertyList name="M2_PROPERTIES">
-					 <Property>entorno=test</Property>
-					 <Property>entorno=test</Property>
-				</PropertyList>
-			</Environment>
-		</Type>
-	</Module>	
+	</Module>
 </Configuration>

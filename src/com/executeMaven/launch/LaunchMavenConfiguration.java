@@ -1,21 +1,25 @@
-package com.executeMaven.cesce.launch;
+package com.executeMaven.launch;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.internal.ui.DebugUIPlugin;
 
-import com.executeMaven.cesce.Activator;
-import com.executeMaven.cesce.bean.BuildParameters;
+import com.executeMaven.bean.BuildParameters;
 
+/**
+ * Launch Maven with configuration defined in the xml
+ * 
+ * @author agustin.rodriguez
+ *
+ */
+@SuppressWarnings("restriction")
 public class LaunchMavenConfiguration {
 
 	@SuppressWarnings("unchecked")
@@ -23,7 +27,6 @@ public class LaunchMavenConfiguration {
 		
 		ILaunchConfiguration configuration = getLaunchConfiguration("lauchino");
 		ILaunchConfigurationWorkingCopy wc = configuration.getWorkingCopy();
-		java.util.Map<String, Object> atributos = wc.getAttributes();
 		
 		for (Map.Entry<String, Object> entry : parameters.getAtributes().entrySet()) {
 			Object mapValue = entry.getValue();
